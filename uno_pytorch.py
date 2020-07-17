@@ -12,6 +12,7 @@ import numpy as np
 from sklearn.metrics import accuracy_score, precision_score, recall_score
 from typing import List
 from time import time
+import argparse
 
 
 class FeatureModel(nn.Module):
@@ -56,9 +57,9 @@ class UnoModel(nn.Module):
         return self.resp_net(torch.cat((self.gene_net(gene), self.drug_net(drug)), dim=1))
 
 
-def load_data():
+def load_data(datafile):
     # download from http://ftp.mcs.anl.gov/pub/candle/public/benchmarks/Pilot1/uno/top_21_auc_1fold.uno.h5
-    datafile = '/home/hsyoo/CANDLE/Benchmarks/Pilot1/Uno/top_21_auc_1fold.uno.h5'
+    # datafile = '/home/hsyoo/CANDLE/Benchmarks/Pilot1/Uno/top_21_auc_1fold.uno.h5'
     kwargs = {'num_workers': 3, 'pin_memory': True}
 
     y_train = torch.tensor(pd.read_hdf(datafile, 'y_train')['AUC'].apply(lambda x: 1 if x < 0.5 else 0).values)
@@ -90,10 +91,21 @@ def load_data():
     return train_loader, val_loader
 
 
+def parse_arguments():
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--device', default='cpu', choices=['cpu', 'cuda', 'sycl'], help='Target device')
+    parser.add_argument('--data', default='./top_21_auc_1fold.uno.h5', help='Datafile location')
+
+    args, unparsed = parser.parse_known_args()
+    return args, unparsed
+
+
 def main():
+    args, _ = parse_arguments()
+    device = torch.device(args.device)
+
     init = time()
-    device = torch.device("sycl")
-    train_loader, val_loader = load_data()
+    train_loader, val_loader = load_data(args.data)
 
     model = UnoModel().to(device)
     optimizer = torch.optim.Adam(model.parameters(), lr=1e-4)

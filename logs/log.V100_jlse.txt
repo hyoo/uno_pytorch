@@ -1,0 +1,32 @@
+$ python uno_pytorch.py --device cuda --data /home/hsyoo/CANDLE/Benchmarks/Pilot1/Uno/top_21_auc_1fold.uno.h5
+Loading script and data:  163.97906136512756
+Elapsed time for training: 15.586775541305542
+Elasped time for eval: 1.0163929462432861
+Epoch: 001 180.58243227005005 sec lr: 0.000100 loss: 0.27095 val_loss: 0.2445 accuracy: 0.8987 precision neg: 0.9985 pos: 0.2300 recall neg: 0.8968 pos: 0.9583
+Elapsed time for training: 10.577483654022217
+Elasped time for eval: 0.9615752696990967
+Epoch: 002 192.12177538871765 sec lr: 0.000100 loss: 0.07400 val_loss: 0.2102 accuracy: 0.8896 precision neg: 0.9985 pos: 0.2150 recall neg: 0.8874 pos: 0.9583
+Elapsed time for training: 10.591019630432129
+Elasped time for eval: 1.0056827068328857
+Epoch: 003 203.71872544288635 sec lr: 0.000100 loss: 0.30237 val_loss: 0.1624 accuracy: 0.9130 precision neg: 0.9942 pos: 0.2410 recall neg: 0.9155 pos: 0.8333
+Elapsed time for training: 10.651599168777466
+Elasped time for eval: 1.016674280166626
+Epoch: 004 215.3872582912445 sec lr: 0.000100 loss: 0.13509 val_loss: 0.2259 accuracy: 0.8883 precision neg: 0.9985 pos: 0.2130 recall neg: 0.8861 pos: 0.9583
+Elapsed time for training: 10.338073253631592
+Elasped time for eval: 1.009735107421875
+Epoch: 005 226.73537945747375 sec lr: 0.000100 loss: 0.38791 val_loss: 0.1940 accuracy: 0.8974 precision neg: 0.9985 pos: 0.2277 recall neg: 0.8954 pos: 0.9583
+Elapsed time for training: 10.6355459690094
+Elasped time for eval: 1.0143063068389893
+Epoch: 006 238.3854899406433 sec lr: 0.000100 loss: 0.10263 val_loss: 0.1964 accuracy: 0.9078 precision neg: 0.9971 pos: 0.2418 recall neg: 0.9075 pos: 0.9167
+Elapsed time for training: 10.523705005645752
+Elasped time for eval: 1.0804800987243652
+Epoch: 007 249.9899172782898 sec lr: 0.000100 loss: 0.10701 val_loss: 0.1761 accuracy: 0.9156 precision neg: 0.9985 pos: 0.2644 recall neg: 0.9142 pos: 0.9583
+Elapsed time for training: 10.570936679840088
+Elasped time for eval: 1.006563425064087
+Epoch: 008 261.5676693916321 sec lr: 0.000100 loss: 0.05446 val_loss: 0.2090 accuracy: 0.9104 precision neg: 0.9985 pos: 0.2527 recall neg: 0.9088 pos: 0.9583
+Elapsed time for training: 10.140752077102661
+Elasped time for eval: 0.9725649356842041
+Epoch: 009 272.68122363090515 sec lr: 0.000100 loss: 0.07505 val_loss: 0.1882 accuracy: 0.9182 precision neg: 1.0000 pos: 0.2759 recall neg: 0.9155 pos: 1.0000
+Elapsed time for training: 10.368263959884644
+Elasped time for eval: 1.0023624897003174
+Epoch: 010 284.05210161209106 sec lr: 0.000010 loss: 0.02787 val_loss: 0.1656 accuracy: 0.9286 precision neg: 0.9986 pos: 0.2987 recall neg: 0.9276 pos: 0.9583

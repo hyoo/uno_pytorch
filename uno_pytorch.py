@@ -95,6 +95,7 @@ def parse_arguments():
     parser = argparse.ArgumentParser()
     parser.add_argument('--device', default='cpu', choices=['cpu', 'cuda', 'sycl'], help='Target device')
     parser.add_argument('--data', default='./top_21_auc_1fold.uno.h5', help='Datafile location')
+    parser.add_argument('--ep', default=10, type=int, help='Epochs')
 
     args, unparsed = parser.parse_known_args()
     return args, unparsed
@@ -111,9 +112,9 @@ def main():
     optimizer = torch.optim.Adam(model.parameters(), lr=1e-4)
     scheduler = ReduceLROnPlateau(optimizer, patience=5, min_lr=1e-6)
     ed = time()
-    print(f"Loading script and data:  {ed-init}")
+    print(f"Loading script and data:  {(ed-init):.2f}")
 
-    for epoch in range(1, 11):
+    for epoch in range(1, (args.ep + 1)):
         # train
         st = time()
         model.train()
@@ -125,7 +126,7 @@ def main():
             loss.backward()
             optimizer.step()
         ed = time()
-        print(f"Elapsed time for training: {ed-st}")
+        print(f"Elapsed time for training: {(ed-st):.2f}")
         # eval
         st = time()
         model.eval()
@@ -143,9 +144,9 @@ def main():
                 recall = recall_score(target, pred, average=None)
         lr = optimizer.param_groups[0]['lr']
         ed = time()
-        print(f"Elasped time for eval: {ed-st}")
+        print(f"Elasped time for eval: {(ed-st):.2f}")
         scheduler.step(val_loss)
-        print(f'Epoch: {epoch:03} {(ed-init):03} sec lr: {lr:.6f} loss: {loss:.5f} val_loss: {val_loss:.4f} accuracy: {accuracy:.4f} precision neg: {precision[0]:.4f} pos: {precision[1]:.4f} recall neg: {recall[0]:.4f} pos: {recall[1]:.4f}')
+        print(f'Epoch: {epoch:03} {(ed-init):.2f} sec lr: {lr:.6f} loss: {loss:.5f} val_loss: {val_loss:.4f} accuracy: {accuracy:.4f} precision neg: {precision[0]:.4f} pos: {precision[1]:.4f} recall neg: {recall[0]:.4f} pos: {recall[1]:.4f}')
 
 
 if __name__ == '__main__':
